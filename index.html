@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise</title>
+  </head>
+  <body ng-app="myApp">
+    <h3>Exercise</h3>
+
+    <div ng-controller="myAppController">
+      <anchor name="mass"></anchor>
+
+      <div>
+        <h3>Template cache</h3>
+        <div ng-include src="'name.html'"></div>
+      </div>
+
+      <div>
+        <h3>Custom Filter</h3>
+        <h4>Reverse a string</h4>
+        <p>{{ "This is a string to be reversed" |reverse}}</p>
+      </div>
+
+      <div>
+        <h3>Fitering array and paasing values to custom filter</h3>
+        <input type="range" min="3" max="20" ng-model="votes" />
+        <span>{{votes}}</span>
+        <p style="color: red">Comments greater than {{votes}} votes</p>
+        <p ng-repeat="data in val|arr:votes">{{data.comment}}</p>
+      </div>
+
+      <div>
+        <h3>Call a method in a service via controller</h3>
+        <button ng-click="callService.callme('From Service')">call Me</button>
+      </div>
+
+      <div>
+        <h3>
+          Call a http service from the custom service named "github" via
+          controller
+        </h3>
+        <button ng-click="getApiViaService()">get GithubData</button>
+        <hr>
+        <div
+          style="display: flex; flex-wrap: wrap; justify-content: space-around"
+        >
+          <div ng-repeat="data in githubData">
+            <img
+              src="{{data.actor.avatar_url}}"
+              style="width: 300px; height: 300px"
+            />
+            <h3>{{data.actor.login}}</h3>
+          </div>
+
+
+       
+        </div>
+        <hr>
+
+        <div>
+            <h3>Fake api call using $q.defer()</h3>
+            <button ng-click="fakeApiCall()">Fake Api </button>
+        </div>
+    
+      </div>
+
+
+    </div>
+  </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="script.js"></script>
